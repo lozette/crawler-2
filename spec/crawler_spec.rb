@@ -45,7 +45,7 @@ RSpec.describe Crawler do
 
     it "Throws a friendly error" do
       expect { crawler.crawl(url) }
-        .to output("Please provide a valid url, e.g. `./bin/crawler http://www.livestax.com`\n").to_stdout
+        .to output("Please provide a valid url, e.g. `./bin/crawler http://www.livestax.com`\n").to_stderr
     end
   end
 

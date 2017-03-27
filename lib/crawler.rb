@@ -13,7 +13,7 @@ class Crawler
         puts @output.keep_if{|hsh| hsh.is_a?(Hash)}.to_json
       end
     else
-      puts "Please provide a valid url, e.g. `./bin/crawler http://www.livestax.com`"
+      abort("Please provide a valid url, e.g. `./bin/crawler http://www.livestax.com`")
     end
   end
 
@@ -22,8 +22,8 @@ class Crawler
   def fetch_and_parse_page(url)
     begin
       page = HTTParty.get(url)
-    rescue Exception => e
-      puts "Something went wrong, please check the url you provided\n#{e}"
+    rescue SocketError, HTTParty::Error => e
+      abort("Something went wrong, please check the url you provided\n#{e}")
     else
       Nokogiri::HTML(page)
     end
