@@ -30,7 +30,7 @@ class Crawler
   end
 
   def crawl_page(page, url)
-    assets = page.xpath("//script/@src|//link/@href")
+    assets = page.xpath("//script/@src|//link/@href|//img/@src")
     page_info = { "url" => url }
     if assets
       page_info.merge!(

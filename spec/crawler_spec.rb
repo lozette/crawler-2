@@ -9,11 +9,20 @@ RSpec.describe Crawler do
     let(:response) { File.open('spec/livestax.html').read }
     let(:expected) {
       [
-        { url: "http://www.livestax.com/",
-          assets: [
+        {
+          "url":"http://www.livestax.com/",
+          "assets": [
             "/assets/stylesheets/style-bb7c40da5a.min.css",
             "//assets/images/touch/apple-touch-icon-144-precomposed.png",
             "/favicon.ico",
+            "/assets/images/logo.png",
+            "/assets/images/liberate.svg",
+            "/assets/images/data.svg",
+            "/assets/images/icon-philosophy.svg",
+            "/assets/images/icon-bespoke.svg",
+            "/assets/images/icon-design-develop.svg",
+            "/assets/images/interface.jpg",
+            "/assets/images/logo.png",
             "/assets/javascript/index-65eecce907.min.js"
           ]
         }
