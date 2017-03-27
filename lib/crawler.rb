@@ -4,7 +4,7 @@ require 'uri'
 
 class Crawler
   def crawl(url)
-    if url && !url.empty?
+    if url_valid?(url)
       @output = []
       @url = url
       page = fetch_and_parse_page(url)
@@ -18,6 +18,10 @@ class Crawler
   end
 
   private
+
+  def url_valid?(url)
+    url && !url.empty? && !URI.parse(url).scheme.nil?
+  end
 
   def fetch_and_parse_page(url)
     begin
