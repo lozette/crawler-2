@@ -9,8 +9,8 @@ class Crawler
       @url = url
       page = fetch_and_parse_page(url)
       if page && page.xpath("//a|//link|//script")
-        @output << crawl_page(page, url)
-        puts @output.keep_if{|hsh| hsh.is_a?(Hash)}.to_json
+        crawl_page(page, url)
+        puts @output.to_json
       end
     else
       abort("Please provide a valid url, e.g. `./bin/crawler http://www.livestax.com`")
@@ -30,6 +30,7 @@ class Crawler
   end
 
   def crawl_page(page, url)
+    return if already_crawled(url)
     assets = page.xpath("//script/@src|//link/@href|//img/@src")
     page_info = { "url" => url }
     if assets

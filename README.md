@@ -42,8 +42,3 @@ bundle exec rspec
 0. On very large sites the script takes a long time to return anything but does not provide any feedback to assure the user that it's actually doing something.
 0. A shallow/deep option would be good; or a way of specifying the depth of links the script should traverse.
 0. External assets specified with a leading `//` (to indicate they can be loaded as http or https) are reported as being "local" assets even though they may not be. (See output from `./bin/crawler http://www.lauralifts.com` for an example.)
-0. `crawler.rb:13`
-```
-puts @output.keep_if{|hsh| hsh.is_a?(Hash)}.to_json
-```
-The `@output` array is initialized with a default `0` value which persists at the end of the script, and I can't for the life of me figure out how to make it go away except for using this clunky `keep_if?` statement, yuck.
