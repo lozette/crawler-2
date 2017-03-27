@@ -47,6 +47,7 @@ class Crawler
     links.each do |link|
       sub_url = link.to_s
       sub_url = "#{@url}#{sub_url}" if sub_url.start_with?('/')
+      sub_url.gsub!(/(?<!:)\/+(?=\/)/, '')
       if same_domain(sub_url) && !already_crawled(sub_url)
         page = fetch_and_parse_page(sub_url)
         crawl_page(page, sub_url)
