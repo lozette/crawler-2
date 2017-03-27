@@ -33,7 +33,7 @@ class Crawler
     return if already_crawled(url)
     assets = page.xpath("//script/@src|//link/@href|//img/@src")
     page_info = { "url" => url }
-    if assets
+    if assets.any?
       page_info.merge!(
         { "assets" => assets.map{ |asset| asset.to_s if same_domain(asset.to_s) }.compact }
       )
